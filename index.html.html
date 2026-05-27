@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishal Prajapati — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal: #0F6E56; --teal-light: #E1F5EE; --teal-mid: #1D9E75;
+    --dark: #0e1012; --surface: #f5f7f5; --muted: #6b7280;
+    --border: rgba(15,110,86,0.15); --white: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--surface); color: var(--dark); line-height: 1.6; }
+  .port { max-width: 900px; margin: 0 auto; padding: 0 2rem 5rem; }
+
+  nav { display:flex; justify-content:space-between; align-items:center; padding:1.25rem 0; border-bottom:1px solid var(--border); position:sticky; top:0; background:var(--surface); z-index:10; }
+  .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:20px; color:var(--teal); letter-spacing:-0.5px; }
+  .nav-links { display:flex; gap:1.75rem; }
+  .nav-links a { font-size:14px; color:var(--muted); text-decoration:none; font-weight:500; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--teal); }
+
+  .hero { padding:5rem 0 3.5rem; display:grid; grid-template-columns:1fr auto; gap:3rem; align-items:center; }
+  .hero-tag { font-size:12px; font-weight:500; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem; display:flex; align-items:center; gap:8px; }
+  .hero-tag::before { content:''; width:28px; height:1.5px; background:var(--teal); display:inline-block; }
+  .hero h1 { font-family:'Syne',sans-serif; font-size:54px; font-weight:800; line-height:1.06; letter-spacing:-2px; color:var(--dark); margin-bottom:1.25rem; }
+  .hero h1 span { color:var(--teal); }
+  .hero-desc { font-size:16px; color:var(--muted); max-width:460px; line-height:1.85; margin-bottom:2rem; font-weight:300; }
+  .hero-btns { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn-primary { background:var(--teal); color:white; padding:12px 26px; border-radius:7px; font-size:14px; font-weight:500; text-decoration:none; display:inline-flex; align-items:center; gap:8px; transition:opacity 0.2s; }
+  .btn-primary:hover { opacity:0.88; }
+  .btn-outline { background:transparent; color:var(--teal); padding:12px 26px; border-radius:7px; font-size:14px; font-weight:500; text-decoration:none; border:1.5px solid var(--teal); display:inline-flex; align-items:center; gap:8px; transition:background 0.2s; }
+  .btn-outline:hover { background:var(--teal-light); }
+  .avatar-wrap { width:160px; height:160px; border-radius:50%; border:3px solid var(--teal); display:flex; align-items:center; justify-content:center; background:var(--teal-light); flex-shrink:0; }
+  .avatar-init { font-family:'Syne',sans-serif; font-size:52px; font-weight:800; color:var(--teal); }
+
+  .stats-bar { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-bottom:4rem; }
+  .stat { background:var(--white); padding:1.5rem 2rem; }
+  .stat-num { font-family:'Syne',sans-serif; font-size:32px; font-weight:800; color:var(--teal); }
+  .stat-label { font-size:13px; color:var(--muted); margin-top:3px; }
+
+  .section { margin-bottom:4rem; }
+  .sec-header { display:flex; align-items:center; gap:14px; margin-bottom:1.75rem; }
+  .sec-title { font-family:'Syne',sans-serif; font-size:22px; font-weight:700; color:var(--dark); letter-spacing:-0.3px; white-space:nowrap; }
+  .sec-line { flex:1; height:1px; background:var(--border); }
+
+  .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .skill-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem; }
+  .skill-card-label { font-size:11px; font-weight:500; color:var(--teal); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag { font-size:12px; background:var(--teal-light); color:var(--teal); padding:4px 10px; border-radius:20px; font-weight:500; }
+
+  .proj-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .proj-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:1.5rem; transition:border-color 0.2s,transform 0.2s; }
+  .proj-card:hover { border-color:var(--teal-mid); transform:translateY(-2px); }
+  .proj-icon { width:40px; height:40px; background:var(--teal-light); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--teal); font-size:20px; margin-bottom:14px; }
+  .proj-title { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--dark); margin-bottom:8px; }
+  .proj-desc { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:14px; font-weight:300; }
+  .proj-stack { display:flex; flex-wrap:wrap; gap:6px; }
+  .proj-tag { font-size:11px; color:var(--muted); background:var(--surface); padding:3px 9px; border-radius:5px; border:1px solid var(--border); }
+
+  .exp-list { display:flex; flex-direction:column; gap:16px; }
+  .exp-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:1.5rem 1.75rem; display:grid; grid-template-columns:auto 1fr; gap:1.25rem; }
+  .exp-dot { width:11px; height:11px; border-radius:50%; background:var(--teal); margin-top:5px; flex-shrink:0; }
+  .exp-role { font-family:'Syne',sans-serif; font-size:16px; font-weight:700; color:var(--dark); }
+  .exp-org { font-size:14px; color:var(--teal); font-weight:500; margin-top:3px; }
+  .exp-date { font-size:12px; color:var(--muted); margin-top:3px; }
+  .exp-desc { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.8; font-weight:300; }
+
+  .cert-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
+  .cert-card { background:var(--white); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.25rem; display:flex; align-items:flex-start; gap:12px; }
+  .cert-icon { color:var(--teal); font-size:22px; flex-shrink:0; margin-top:1px; }
+  .cert-name { font-size:14px; font-weight:500; color:var(--dark); line-height:1.4; }
+  .cert-issuer { font-size:12px; color:var(--muted); margin-top:4px; }
+
+  .contact-card { background:var(--teal); border-radius:18px; padding:3rem; display:grid; grid-template-columns:1fr auto; gap:2rem; align-items:center; }
+  .contact-title { font-family:'Syne',sans-serif; font-size:28px; font-weight:800; color:white; margin-bottom:10px; letter-spacing:-0.5px; }
+  .contact-sub { font-size:15px; color:rgba(255,255,255,0.75); font-weight:300; }
+  .contact-links { display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+  .contact-link { font-size:14px; color:rgba(255,255,255,0.9); text-decoration:none; display:flex; align-items:center; gap:8px; transition:color 0.2s; }
+  .contact-link:hover { color:white; }
+  .footer { text-align:center; font-size:13px; color:var(--muted); padding-top:2.5rem; border-top:1px solid var(--border); margin-top:1rem; }
+
+  @media (max-width:640px) {
+    .hero { grid-template-columns:1fr; }
+    .avatar-wrap { width:100px; height:100px; }
+    .avatar-init { font-size:36px; }
+    .hero h1 { font-size:38px; }
+    .stats-bar { grid-template-columns:1fr; }
+    .contact-card { grid-template-columns:1fr; }
+    .contact-links { align-items:flex-start; }
+    .nav-links { gap:1rem; }
+  }
+</style>
+</head>
+<body>
+<div class="port">
+  <nav>
+    <div class="nav-logo">VP.</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero" id="about">
+    <div>
+      <div class="hero-tag">Available for work</div>
+      <h1>Hi, I'm<br><span>Vishal</span><br>Prajapati.</h1>
+      <p class="hero-desc">MERN Full Stack Developer & B.Tech CSE 2025 graduate. I build scalable web applications — from clean React UIs to robust Node.js backends — and love solving real-world problems with code.</p>
+      <div class="hero-btns">
+        <a class="btn-primary" href="mailto:vishalp6033@gmail.com"><i class="ti ti-mail"></i> Hire me</a>
+        <a class="btn-outline" href="https://www.linkedin.com/in/vishal-prajapati-9a2a61289/" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn</a>
+      </div>
+    </div>
+    <div class="avatar-wrap"><span class="avatar-init">VP</span></div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">4+</div><div class="stat-label">months industry experience</div></div>
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">live projects built</div></div>
+    <div class="stat"><div class="stat-num">5+</div><div class="stat-label">certifications earned</div></div>
+  </div>
+
+  <section class="section" id="skills">
+    <div class="sec-header"><span class="sec-title">Technical skills</span><div class="sec-line"></div></div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-card-label">Frontend</div><div class="skill-tags"><span class="tag">React.js</span><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">Bootstrap</span><span class="tag">Angular</span></div></div>
+      <div class="skill-card"><div class="skill-card-label">Backend</div><div class="skill-tags"><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span></div></div>
+      <div class="skill-card"><div class="skill-card-label">Databases</div><div class="skill-tags"><span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">Firebase</span></div></div>
+      <div class="skill-card"><div class="skill-card-label">Languages</div><div class="skill-tags"><span class="tag">JavaScript</span><span class="tag">Python</span><span class="tag">C++</span></div></div>
+      <div class="skill-card"><div class="skill-card-label">Cloud & DevOps</div><div class="skill-tags"><span class="tag">AWS EC2</span><span class="tag">S3</span><span class="tag">IAM</span><span class="tag">Git</span><span class="tag">GitHub</span></div></div>
+      <div class="skill-card"><div class="skill-card-label">Practices</div><div class="skill-tags"><span class="tag">Agile/Scrum</span><span class="tag">SDLC</span><span class="tag">Postman</span><span class="tag">Linux</span></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="sec-header"><span class="sec-title">Projects</span><div class="sec-line"></div></div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-icon"><i class="ti ti-shopping-cart"></i></div>
+        <div class="proj-title">ShopWise</div>
+        <p class="proj-desc">Full-featured e-commerce platform with user auth, product listings, cart management, and order tracking. REST APIs for all CRUD operations.</p>
+        <div class="proj-stack"><span class="proj-tag">Angular</span><span class="proj-tag">Node.js</span><span class="proj-tag">MongoDB</span><span class="proj-tag">REST API</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon"><i class="ti ti-bike"></i></div>
+        <div class="proj-title">FoodVerse</div>
+        <p class="proj-desc">Food delivery web platform for Hyderabad users with intuitive browsing, ordering UI, and fully responsive design for all screen sizes.</p>
+        <div class="proj-stack"><span class="proj-tag">HTML5</span><span class="proj-tag">CSS3</span><span class="proj-tag">JavaScript</span><span class="proj-tag">Bootstrap</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-icon"><i class="ti ti-clipboard-check"></i></div>
+        <div class="proj-title">Attendance Manager</div>
+        <p class="proj-desc">Backend-heavy system automating student attendance tracking, report generation, and data management with full SQL schema design.</p>
+        <div class="proj-stack"><span class="proj-tag">Python</span><span class="proj-tag">MySQL</span><span class="proj-tag">Backend</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="experience">
+    <div class="sec-header"><span class="sec-title">Experience</span><div class="sec-line"></div></div>
+    <div class="exp-list">
+      <div class="exp-card">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">Full Stack Developer Trainee</div>
+          <div class="exp-org">Grazitti Interactive</div>
+          <div class="exp-date">Jan 2025 – Apr 2025 · On-site, Punjab</div>
+          <p class="exp-desc">Built React.js + Node.js features in a live production codebase. Integrated REST APIs with MongoDB, participated in agile sprints and code reviews, and collaborated with senior developers on e-commerce application modules.</p>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div class="exp-dot"></div>
+        <div>
+          <div class="exp-role">Frontend Developer Intern</div>
+          <div class="exp-org">TheWebsiteMakers</div>
+          <div class="exp-date">Jul 2023 – Aug 2023 · Remote</div>
+          <p class="exp-desc">Delivered 2+ responsive client websites using HTML5, CSS3, JavaScript, and Bootstrap. Translated mockups into pixel-accurate interfaces and managed client feedback cycles independently.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-header"><span class="sec-title">Certifications</span><div class="sec-line"></div></div>
+    <div class="cert-grid">
+      <div class="cert-card"><i class="ti ti-cloud cert-icon"></i><div><div class="cert-name">AWS Cloud Practitioner</div><div class="cert-issuer">Amazon Web Services</div></div></div>
+      <div class="cert-card"><i class="ti ti-shield cert-icon"></i><div><div class="cert-name">AWS Cloud Security</div><div class="cert-issuer">Amazon Web Services</div></div></div>
+      <div class="cert-card"><i class="ti ti-chart-bar cert-icon"></i><div><div class="cert-name">AWS Data Analytics</div><div class="cert-issuer">Amazon Web Services</div></div></div>
+      <div class="cert-card"><i class="ti ti-lock cert-icon"></i><div><div class="cert-name">CISCO Cybersecurity</div><div class="cert-issuer">Cisco Networking Academy</div></div></div>
+      <div class="cert-card"><i class="ti ti-database cert-icon"></i><div><div class="cert-name">MongoDB GenAI Apps Badge</div><div class="cert-issuer">MongoDB University</div></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="contact-card">
+      <div>
+        <div class="contact-title">Let's build something together.</div>
+        <div class="contact-sub">Open to full-time roles, freelance projects & collaborations.</div>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:vishalp6033@gmail.com"><i class="ti ti-mail"></i> vishalp6033@gmail.com</a>
+        <a class="contact-link" href="tel:+916386848154"><i class="ti ti-phone"></i> +91 6386848154</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/vishal-prajapati-9a2a61289/" target="_blank"><i class="ti ti-brand-linkedin"></i> LinkedIn Profile</a>
+        <a class="contact-link"><i class="ti ti-map-pin"></i> Azamgarh, UP</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">Built with care · Vishal Prajapati © 2025</div>
+</div>
+</body>
+</html>
